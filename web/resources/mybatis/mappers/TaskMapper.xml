@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="club.uglyland.dao.TaskDao">
+
+    <resultMap id="Task" type="club.uglyland.pojo.Task">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userId" jdbcType="INTEGER" property="userId"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="time" jdbcType="DATE" property="time"/>
+        <result column="frequency" jdbcType="INTEGER" property="frequency"/>
+        <result column="repeat" jdbcType="INTEGER" property="repeat"/>
+        <result column="rValue" jdbcType="INTEGER" property="rValue"/>
+        <result column="last_completed" jdbcType="DATE" property="lastCompleted"/>
+    </resultMap>
+
+<!--        1        2          3           4               5           -->
+<!--    int id, int state, int repeat, int nextTime, String search,
+     6      7       8     9         10
+int r2,int r3,int r4,int r5,Date date)-->
+    <select id="getTask" resultMap="Task">
+        select * from ginkgo.Task
+        where Task.userId = #{userId}
+
+        <if test="state==2">
+            and Task.last_completed=#{findingDate}
+        </if>
+        <if test="state==3">
+            and Task.last_completed!=#{findingDate}
+        </if>
+        and (
+        1=0
+        <if test="(repeat&amp;1)!=0">
+           or (Task.`repeat`=1 and Task.rValue=#{rValue1})
+        </if>
+        <if test="(repeat&amp;2)!=0">
+            or Task.`repeat`=2
+        </if>
+        <if test="(repeat&amp;4)!=0">
+            or (Task.`repeat`=3 and Task.`rValue` = #{rValue3} )
+        </if>
+        <if test="(repeat&amp;8)!=0">
+            or (Task.`repeat`=4 and Task.`rValue` = #{rValue4} )
+        </if>
+        <if test="(repeat&amp;16)!=0">
+            or (Task.`repeat`=5 and Task.`rValue` = #{rValue5} )
+        </if>
+
+        )
+        <if test="search!=null">
+            and Task.`desc` like concat('%',#{search},'%')
+        </if>
+<!--        <if test="#{param2}==3">-->
+<!--            and Task.last_completed &gt; #{param2}-->
+<!--        </if>-->
+    </select>
+
+    <select id="getAllTask" resultMap="Task">
+        select * from ginkgo.Task
+        where Task.userId=#{userId}
+          and Task.`desc` like concat('%',#{search},'%')
+        and (
+        1=0
+        <if test="(repeat&amp;1)!=0">
+            or Task.`repeat`= 1
+        </if>
+        <if test="(repeat&amp;2)!=0">
+            or Task.`repeat`=2
+        </if>
+        <if test="(repeat&amp;4)!=0">
+            or Task.`repeat`=3
+        </if>
+        <if test="(repeat&amp;8)!=0">
+            or Task.`repeat`=4
+        </if>
+        <if test="(repeat&amp;16)!=0">
+            or Task.`repeat`=5
+        </if>
+
+        )
+    </select>
+
+    <insert id="addTask">
+        insert into ginkgo.Task (Task.userId, Task.`desc`, Task.time, Task.`repeat`, Task.rValue, Task.last_completed)
+        values (#{userId},#{desc},#{time},#{repeat},#{rValue},#{lastCompleted})
+    </insert>
+
+    <update id="completeTask">
+        update ginkgo.Task set Task.frequency = Task.frequency+1
+        where Task.id = #{param1}
+    </update>
+
+    <delete id="deleteTask">
+        delete from ginkgo.Task where Task.id=#{param1}
+    </delete>
+
+    <select id="selectUserIdById" resultType="INTEGER">
+        select Task.userId from ginkgo.Task where Task.id=#{param1}
+    </select>
+
+</mapper>

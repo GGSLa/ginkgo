@@ -1,0 +1,63 @@
+.write{
+    width: auto;
+    height: 48px;
+}
+.write button{
+    width: 122px;
+    height: 38px;
+    color: white;
+    background-color: #14b1ff;
+    float: right;
+    font-size: 17px;
+    text-decoration: none;
+    border: none;
+}
+.write button:hover{
+    background-color: #0799Ff;
+}
+
+.lists {
+    width: auto;
+    height: 500px;
+}
+.view{
+    font-weight: bolder;
+    text-align: center;
+    width: 64px;
+}
+.like {
+    font-weight: bolder;
+    text-align: center;
+    width: 64px;
+}.title {
+    font-weight: bolder;
+    text-align: center;
+    width: 870px;
+}
+.author{
+    font-weight: bolder;
+    text-align: center;
+    width: 256px;
+}
+.date{
+    font-weight: bolder;
+    text-align: center;
+    width: 250px;
+}
+
+.bgcolor1{
+    height: 30px;
+    background: #bbbbbb;
+}
+.bgcolor2{
+    height: 30px;
+    background: #eeeeee;
+}
+.bgcolor{
+    height: 50px;
+    background: white;
+}
+.title1 a{
+    text-decoration: none;
+    color: mediumblue;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.uglyland.dao.UserDao">
+    <insert id="insertUser">
+        insert into user_login (handle,password) values (#{param1},#{param2})
+    </insert>
+
+    <select id="getIdByPassword" resultType="Integer">
+        select id from user_login where handle=#{param1} and password=#{param2}
+    </select>
+</mapper>

@@ -1,0 +1,69 @@
+
+.inner{
+    height: 500px;
+    width: auto;
+}
+.inDiv{
+    width: 800px;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inText{
+    width: 420px;
+    border: 1px solid #a0a0a0;
+    border-radius: 10px;
+    height: 100%;
+    padding-left: 15px;
+    font-size: 18px;
+    margin-left: 25%;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.chooseCountry{
+    display: inline-block;
+    border: 1px solid #a0a0a0;
+    border-radius:10px 0 0 10px;
+    width: 130px;
+    margin-left: 25%;
+    height: 105%;
+    padding-left: 15px;
+}
+
+.phoneInput{
+    display: inline-block;
+    border: 1px solid #a0a0a0;
+    border-radius: 0 10px 10px 0;
+    padding-left: 15px;
+    width: 280px;
+    height: 100%;
+}
+.submitRegister1{
+    width: 430px;
+    height: 40px;
+    background: #14b1ff;
+    text-align: center;
+    color: white;
+    margin-left: 25%;
+    font-size: 18px;
+    border-radius: 10px;
+}.submitRegister2{
+    width: 430px;
+    height: 40px;
+    background: gray;
+    text-align: center;
+    color: darkgray;
+    margin-left: 25%;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.tips{
+    margin-left: 15px;
+    color: red;
+    font-size: 15px;
+    vertical-align:middle;
+}

@@ -1,0 +1,27 @@
+.yearMonth{
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #14b1ff;
+    font-size: 20px;
+}
+.nDay{
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #14b1ff;
+    font-size:150px;
+}
+.nTime{
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #14b1ff;
+    font-size:20px;
+}
+.nTime a{
+    text-decoration: none;
+    color: #14b1ff;
+}

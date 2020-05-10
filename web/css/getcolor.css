@@ -1,0 +1,44 @@
+.getColorTip{
+    height: 50px;
+    width: auto;
+}
+.wenzi{
+    width: 300px;
+    height: 50px;
+    margin-left: 20%;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+
+.submitPicture{
+    border:none;
+    width: 120px;
+    height: 50px;
+}
+
+.desImgContainer{
+    width: auto;
+    height: 800px;
+}
+.desImg{
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 500px;
+}
+
+.output{
+    width: 80px;
+    height: 30px;
+    text-align: center;
+}
+
+#portrait{
+    width: 1200px;
+}
+
+.wrap{
+    margin-bottom: 300px;
+    margin-left: 270px;
+}

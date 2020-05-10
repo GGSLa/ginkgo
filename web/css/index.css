@@ -1,0 +1,90 @@
+body{
+    margin:0;
+    border: 0;
+    padding: 0;
+    margin-bottom: 100px;
+}
+ul{
+    list-style-type: none;
+}
+
+.nav2{
+     background: #14b1ff;
+     border-top: 100px;
+     height:30px;
+     width: 980px ;
+     margin-left: auto;
+     margin-right: auto;
+ }
+.nav2 a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    font-size:20px;
+    margin-left: 25px;
+    height:30px;
+    width: 130px;
+}
+.nav2 a:hover{
+    background: #66CCFF;
+}
+
+
+
+.focus{
+    margin-top:10px;
+    height:400px;
+    width: auto;
+}
+
+.car{
+    margin-left: auto;
+    margin-right: auto;
+    height:330px;
+    width: 60%;
+    float: left;
+}
+.cal{
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+
+    height:330px;
+    width: 40%;
+}
+.container{
+    margin-top:10px;
+    height:1000px;
+    width: auto;
+}
+.choose{
+    margin:1px;
+    width: 321px;
+    height: 321px;
+    float: left;
+    background-color: #66CCFF;
+}
+.chos{
+    display: block;
+    height:300px;
+    width: 300px;
+    margin:auto;
+    margin-top:10px;
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;  /* 0.6s??ɹ?????? */
+    -webkit-transition: all 0.3s;
+}
+.chos:hover{
+    margin-top: 0;
+    width: 321px;
+    height: 321px;
+
+}
+.chos img{
+    width: 100%;
+    height: 100%;
+}
+

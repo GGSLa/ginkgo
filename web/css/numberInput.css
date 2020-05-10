@@ -1,0 +1,33 @@
+.numberInput{
+    height: 38px;
+    width: auto;
+}
+.cen{
+    width: 480px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.textInput{
+    width: 350px;
+    height: 80%;
+    font-size: 20px;
+    display: inline-block;
+    border: 1px solid navy;
+    padding-left: 5px;
+}
+
+.submit{
+    width: 120px;
+    border: none;
+    height: 95%;
+    display: inline-block;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    background: #14b1ff;
+    cursor:pointer;
+}
+.submit:hover{
+    background: #0799Ff;
+}

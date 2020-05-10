@@ -1,0 +1,35 @@
+.spicture{
+    width: 100%;
+    height: 100%;
+}
+.sdiv{
+    width: 93%;
+    height: 93%;
+    margin-left: 20px;
+}
+.focusBox{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.sDot{
+    margin-left: 250px;
+    height: 23px;
+}
+.focusBox li{
+    margin-top: 5px;
+    background: #d0d0d0;
+    float: left;
+    margin-left: 10px;
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.focusBox li.cur{
+    background: #0799Ff;
+    /*background: #f60;*/
+    opacity: 0.6;
+    filter: alpha(opacity = 60);
+}

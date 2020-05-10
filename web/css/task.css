@@ -1,0 +1,66 @@
+.focus{
+    margin-top:10px;
+    height:400px;
+    width: auto;
+}
+.nav2{
+    background: #14b1ff;
+    border-top: 100px;
+    height:30px;
+    width: 980px ;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.just-do-it{
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+    color: white;
+}
+
+.task-border{
+    width: auto;
+    height: 1000px;
+}
+
+.task-limit{
+    width: 980px;
+    height: 100%;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.task-table{
+    /*border: solid 1px white;*/
+    border-collapse:collapse;
+}
+
+.task-limit td,th{
+    border-left: solid 1px white;
+    border-right: solid 1px white;
+}.task-limit tr{
+    text-align: center;
+}
+
+.bg1{
+    background: #eeeeee;
+}
+.bg2{
+    background: #bbbbbb;
+}
+.bg-head{
+    background: #777777;
+}
+
+.task-selector-border{
+    width: auto;
+    height: 90px;
+}
+
+.task-selector-limit{
+    width: 980px;
+    height: 100%;
+    margin-left: auto;
+    margin-right:auto;
+}
