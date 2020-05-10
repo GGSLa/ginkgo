@@ -73,7 +73,7 @@ public class UserAccountService {
     }
 
     public void logout(){
-        session.setAttribute("userId",null);
+        session.setAttribute("userId",-10086);
         session.setAttribute("username",null);
     }
 }

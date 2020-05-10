@@ -6,6 +6,47 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+  Integer originalId = (Integer) session.getAttribute("userId");
+  Cookie[] cookies=request.getCookies();
+  if(originalId!=null){
+    if(originalId==-10086){
+      for(Cookie cookie:cookies){
+        if(cookie.getName().equals("userId")||cookie.getName().equals("username")){
+          cookie.setMaxAge(0);
+        }
+      }
+      session.setAttribute("userId",null);
+    }else {
+      Cookie cookie1 = new Cookie("userId", String.valueOf(session.getAttribute("userId")));
+      Cookie cookie2 = new Cookie("username", (String) session.getAttribute("username"));
+      cookie1.setMaxAge(3600 * 24 * 7);
+      cookie2.setMaxAge(3600 * 24 * 7);
+      response.addCookie(cookie1);
+      response.addCookie(cookie2);
+    }
+  }
+
+
+
+
+  Integer userId = null;
+  String username = null;
+  for(Cookie cookie:cookies){
+    if(cookie.getName().equals("userId")){
+      userId=Integer.parseInt(cookie.getValue());
+    }else if(cookie.getName().equals("username")){
+      username=cookie.getValue();
+    }
+  }
+  if(originalId==null) {
+    session.setAttribute("userId", userId);
+    session.setAttribute("username", username);
+  }
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

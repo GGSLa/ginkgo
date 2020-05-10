@@ -8,4 +8,7 @@ http://uglyland.club/
 
 本项目使用了maven,应该很容易复现才是
 但是可能需要手动加入Spring和SpringMVC的jar包
-版本是5.2.23
+版本是5.2.3
+
+
+数据库的建立也包含在database.sql中了

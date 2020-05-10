@@ -13,8 +13,9 @@
             <ul style="margin-right: 50px;">
                 <li class="font_nav"></li>
                 <li class="font_nav"></li>
-                <li class="font_nav" style="float: left;font-size: 35px;"><a href="../../index.jsp">ZGQ`Space</a></li>
+                <li class="font_nav" style="float: left;font-size: 35px;"><a href="<%=request.getContextPath()%>/index.jsp">ZGQ`Space</a></li>
             </ul>
         </div>
     </div>
 </div>
+
