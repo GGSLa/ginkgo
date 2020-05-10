@@ -1,0 +1,53 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Ginkgo:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ginkgo_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Ginkgo/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Ginkgo" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="spring-5.2.3.RELEASE" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/el-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/jasper.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/jsp-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/catalina.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/ecj-4.6.3.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/jasper-el.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/jaspic-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-jni.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/catalina-ha.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/servlet-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-dbcp.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-jdbc.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-util.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/catalina-ant.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-coyote.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/websocket-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-i18n-es.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-i18n-fr.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-i18n-ja.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-i18n-ru.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/annotations-api.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/catalina-tribes.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-util-scan.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/tomcat-websocket.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/catalina-storeconfig.jar" />
+          <element id="file-copy" path="C:/Orz/tomcat/lib/mysql-connector-java-8.0.18.jar" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.5" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.19" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.3" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.4" />
+          <element id="library" level="module" name="JUnit4" module-name="Ginkgo" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.10.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.10.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
