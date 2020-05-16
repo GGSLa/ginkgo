@@ -1,4 +1,4 @@
-package club.uglyland.responseCode;
+package club.uglyland.application;
 
 /**
  * @Author : ZGQ
@@ -11,4 +11,9 @@ public class ResponseCode {
     public static final int DUPLICATE_NAME=1;
     public static final int PASSWORD_WRONG=2;
     public static final int EMPTY_SET=3;
+
+    private ResponseCode(){
+
+    }
+
 }

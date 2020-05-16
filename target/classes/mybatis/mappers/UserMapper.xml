@@ -11,4 +11,9 @@
     <select id="getIdByPassword" resultType="Integer">
         select id from user_login where handle=#{param1} and password=#{param2}
     </select>
+
+    <select id="getUsernameById" resultType="String">
+        select handle from user_login where id = #{param1}
+    </select>
+
 </mapper>

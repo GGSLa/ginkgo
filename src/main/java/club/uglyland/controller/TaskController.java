@@ -2,6 +2,7 @@ package club.uglyland.controller;
 import club.uglyland.pojo.Task;
 import club.uglyland.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +34,6 @@ public class TaskController {
         return taskService.getTask(id,state,repeat,nextTime,search);
     }
 
-
-
-    @ResponseBody
-    @RequestMapping("/test")
-    public List<Task> getTaskTest(){
-        return taskService.testDao();
-    }
-
     @RequestMapping("/addTask")
     public String addTask(String desc, Date time,int repeat){
         int ret = taskService.addTask(desc,time,repeat);
@@ -50,20 +43,15 @@ public class TaskController {
         return  "redirect:pages/showtask.jsp";
     }
 
+    @ResponseBody
     @RequestMapping("/complete")
-    public String completeTask(Integer id){
-        int ret =taskService.completeTask(id);
-        if(ret==1){
-            return "redirect:pages/login.jsp";
-        }
-        return  "redirect:pages/showtask.jsp";
+    public int completeTask(Integer id){
+        return taskService.completeTask(id);
     }
+
+    @ResponseBody
     @RequestMapping("/delete")
-    public String deleteTask(Integer id){
-        int ret =taskService.deleteTask(id);
-        if(ret==1){
-            return "redirect:pages/login.jsp";
-        }
-        return  "redirect:pages/showtask.jsp";
+    public int deleteTask(Integer id){
+        return taskService.deleteTask(id);
     }
 }

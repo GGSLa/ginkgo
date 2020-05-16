@@ -87,7 +87,7 @@ int r2,int r3,int r4,int r5,Date date)-->
     </insert>
 
     <update id="completeTask">
-        update ginkgo.Task set Task.frequency = Task.frequency+1
+        update ginkgo.Task set Task.frequency = Task.frequency+1,Task.last_completed=#{param2}
         where Task.id = #{param1}
     </update>
 

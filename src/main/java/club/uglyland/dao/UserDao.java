@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface UserDao {
     void insertUser(String handle,String password);
     int getIdByPassword(String handle,String password);
+    String getUsernameById(Integer id);
 }

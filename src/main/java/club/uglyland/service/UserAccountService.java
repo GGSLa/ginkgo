@@ -1,18 +1,12 @@
 package club.uglyland.service;
 
 import club.uglyland.dao.UserDao;
-import club.uglyland.responseCode.ResponseCode;
+import club.uglyland.application.ResponseCode;
 import club.uglyland.util.MD5Util;
-import com.sun.org.apache.bcel.internal.classfile.Code;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.security.provider.MD5;
 
 import javax.servlet.http.HttpSession;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 

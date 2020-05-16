@@ -15,7 +15,7 @@ public interface TaskDao {
     List<Task> getTask(TaskForSearch task);
     List<Task> getAllTask(TaskForSearch task);
     void addTask(Task task);
-    void completeTask(int id);
+    void completeTask(int id,Date date);
     void deleteTask(int id);
     int selectUserIdById(int id);
 }

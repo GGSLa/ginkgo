@@ -1,6 +1,7 @@
 var path1;
-
+var userId1;
 function getTaskList(userId,path) {
+    userId1=userId;
     path1 =path;
     $(".task-table  tr:not(:first)").remove();
     $(".task-limit  div").remove();
@@ -70,16 +71,15 @@ function makeForm(i,item) {
     }else if(item.repeat===5){
         s="每年";
     }
-
     tr.append(makeTH(s));
     var thatId = item.id;
-    if(thatId===-1){
-        tr.append(makeTH("--"));
+    var rValue = item.rValue;
+    if(rValue===-1){
         tr.append(makeTH("--"));
     }else{
-        tr.append(makeTH("<a href='"+path1+"/complete?id="+thatId+"'>完成</a>"));
-        tr.append(makeTH("<a href='"+path1+"/delete?id="+thatId+"'>删除</a>"));
+        tr.append(makeTH("<a href='#' onclick=completeTask("+thatId+")>完成</a>"));
     }
+    tr.append(makeTH("<a href='#' onclick=deleteTask("+thatId+")>删除</a>"));
     if(i%2===0){
         tr.addClass("bg1");
     }else{
@@ -92,4 +92,30 @@ function makeTH(message) {
     var td = $("<td></td>");
     td.append(message);
     return td;
+}
+
+function deleteTask(id) {
+    $.ajax({
+        url: path1+"/delete",
+        type:"POST",
+        data:"id="+id,
+        success:function (result) {
+            if(result.code===1){
+                location.href="pages/login.jsp"
+            }
+            getTaskList(userId1,path1);
+        }
+    })
+}function completeTask(id) {
+    $.ajax({
+        url: path1+"/complete",
+        type:"POST",
+        data:"id="+id,
+        success:function (result) {
+            if(result.code===1){
+                location.href="pages/login.jsp"
+            }
+            getTaskList(userId1,path1);
+        }
+    })
 }

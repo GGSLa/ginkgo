@@ -81,6 +81,5 @@
 $(document).ready(function () {
     setHeadMessage(<%=session.getAttribute("userId")%>,"<%=session.getAttribute("username")%>","");
     getTaskList(<%=session.getAttribute("userId")%>,"<%=request.getContextPath()%>");
-
 });
 </script>

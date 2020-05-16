@@ -12,11 +12,9 @@
   Cookie[] cookies=request.getCookies();
   if(originalId!=null){
     if(originalId==-10086){
-      for(Cookie cookie:cookies){
-        if(cookie.getName().equals("userId")||cookie.getName().equals("username")){
-          cookie.setMaxAge(0);
-        }
-      }
+      Cookie cookie = new Cookie("userId",null);
+      cookie.setMaxAge(0);
+      response.addCookie(cookie);
       session.setAttribute("userId",null);
     }else {
       Cookie cookie1 = new Cookie("userId", String.valueOf(session.getAttribute("userId")));
