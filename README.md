@@ -7,7 +7,6 @@ http://uglyland.club/
 
 
 本项目使用了maven,应该很容易复现才是
-但是可能需要手动加入Spring和SpringMVC的jar包
 版本是5.2.3
 
 
