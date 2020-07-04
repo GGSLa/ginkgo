@@ -1,6 +1,7 @@
 package club.uglyland.controller;
 import club.uglyland.pojo.Task;
 import club.uglyland.service.TaskService;
+import club.uglyland.util.MailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.List;
@@ -54,4 +56,19 @@ public class TaskController {
     public int deleteTask(Integer id){
         return taskService.deleteTask(id);
     }
+
+
+    @ResponseBody
+    @RequestMapping("/hello")
+    public String handle(String name){
+        String s =  "没错,就是你!"+name+",准备好了吗?";
+        try {
+            MailUtil.sendMail("381388494@qq.com","爱你爱你");
+        } catch (MessagingException e) {
+            System.err.println("发送失败");
+        }
+        System.out.println(s);
+        return s;
+    }
+
 }

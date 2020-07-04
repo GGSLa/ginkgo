@@ -5,7 +5,7 @@
 
 <mapper namespace="club.uglyland.dao.UserDao">
     <insert id="insertUser">
-        insert into user_login (handle,password) values (#{param1},#{param2})
+        insert into user_login (handle,password,mail) values (#{param1},#{param2},#{param3})
     </insert>
 
     <select id="getIdByPassword" resultType="Integer">
@@ -14,6 +14,14 @@
 
     <select id="getUsernameById" resultType="String">
         select handle from user_login where id = #{param1}
+    </select>
+
+    <select id="checkUsername" resultType="Integer">
+        select count(*) from user_login where handle = #{param1};
+    </select>
+
+    <select id="checkMail" resultType="Integer">
+        select count(*) from user_login where mail = #{param1};
     </select>
 
 </mapper>

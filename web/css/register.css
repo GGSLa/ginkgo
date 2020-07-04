@@ -42,21 +42,19 @@
     height: 100%;
 }
 .submitRegister1{
-    width: 430px;
+    width: 210px;
     height: 40px;
     background: #14b1ff;
     text-align: center;
     color: white;
-    margin-left: 25%;
     font-size: 18px;
     border-radius: 10px;
 }.submitRegister2{
-    width: 430px;
+    width: 210px;
     height: 40px;
     background: gray;
     text-align: center;
     color: darkgray;
-    margin-left: 25%;
     font-size: 18px;
     border-radius: 10px;
 }

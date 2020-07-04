@@ -20,8 +20,45 @@
 }
 .loginbutton{
     height: 50px;
-    width: 200px;
+    width: 400px;
     margin-left: 40px;
     margin-top: 40px;
+    border-radius: 10px;
+}
+
+
+.inDiv{
+    width: 800px;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inText{
+    width: 420px;
+    border: 1px solid #a0a0a0;
+    border-radius: 10px;
+    height: 100%;
+    padding-left: 15px;
+    font-size: 18px;
+    margin-left: 25%;
+    margin-right: auto;
+    display: inline-block;
+}
+
+.tips{
+    margin-left: 15px;
+    color: red;
+    font-size: 15px;
+    vertical-align:middle;
+}
+.submitRegister1{
+    width: 430px;
+    height: 40px;
+    background: #14b1ff;
+    text-align: center;
+    color: white;
+    font-size: 18px;
     border-radius: 10px;
 }

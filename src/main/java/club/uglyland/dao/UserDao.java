@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
  */
 
 public interface UserDao {
-    void insertUser(String handle,String password);
+    void insertUser(String handle,String password,String mail);
     int getIdByPassword(String handle,String password);
     String getUsernameById(Integer id);
+    int checkUsername(String username);
+    int checkMail(String mail);
 }

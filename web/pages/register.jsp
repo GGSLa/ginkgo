@@ -1,4 +1,4 @@
-<%--
+<%@ page import="club.uglyland.application.ResponseCode" %><%--
   Created by IntelliJ IDEA.
   User: ZGQ
   Date: 2020/5/4
@@ -35,6 +35,10 @@
         <text class="tips"></text>
     </div>
     <div class="inDiv">
+        <input type="text" class="inText" placeholder="请输入邮箱" onmouseleave="submitChange()">
+        <text class="tips"></text>
+    </div>
+    <div class="inDiv">
         <input type="password" class="inText" placeholder="请输入密码" onmouseleave="submitChange()">
         <text class="tips"></text>
     </div>
@@ -43,9 +47,14 @@
         <text class="tips"></text>
     </div>
     <div class="inDiv">
-        <input type="button" class="submitRegister2" id="submitButton" value ="注册" onclick="submitRegister()">
+        <input type="text" class="inText" placeholder="请输入验证码" onmouseleave="submitChange()">
         <text class="tips"></text>
     </div>
+    <div class="inDiv" style="padding-left: 400px;">
+        <input type="button" class="submitRegister2" style="display: inline" id="verifyButton" value ="获取验证码" onclick="getVerifyCode()">
+        <input type="button" class="submitRegister2" style="display: inline" id="submitButton" value ="注册" onclick="submitRegister()">
+    </div>
+
 </form>
 <%@include file="tinypages/footer.jsp"%>
 
@@ -59,20 +68,29 @@ function submitRegister() {
     if(!check()){
         return false;
     }
-
-
     var username = $(".inText")[0].value;
-    var password = $(".inText")[1].value;
+    var email = $(".inText")[1].value;
+    var password = $(".inText")[2].value;
+    var verifyCode = $(".inText")[4].value;
     password = $.md5(password);
+
     $.ajax({
         url:"<%=path%>/register",
         type:"POST",
-        data:"username="+username+"&password="+password,
+        data:"username="+username+"&password="+password+"&email="+email+"&verifyCode="+verifyCode,
         success:function (result) {
-            if(result.code===1){
+            if(result.code===<%=ResponseCode.DUPLICATE_NAME%>){
                 writeNameMessage("用户名已存在");
-            }else if(result.code===0){
+            }else if(result.code===<%=ResponseCode.DUPLICATE_MAIL%>){
+                writeMailMessage("邮箱已被注册")
+            }else if(result.code===<%=ResponseCode.WRONG_VERIFY_CODE%>){
+                alert("验证码错误");
+            }
+
+            else if(result.code===0){
                 location.href="login.jsp";
+            }else{
+                alert("服务器错误,请稍后再试");
             }
         }
     })
@@ -80,5 +98,32 @@ function submitRegister() {
 
 }
 
+
+function getVerifyCode() {
+    var email = document.getElementsByClassName("inText")[1].value;
+    if(!checkEmail(email)){
+        return false;
+    }
+    $.ajax({
+        url:"<%=path%>/getVerifyCode",
+        type:"POST",
+        data:"email="+email,
+        success:function (result) {
+            if(result.code===<%=ResponseCode.REQUEST_LIMITED%>){
+                alert("请求过于频繁");
+            }else if(result.code===<%=ResponseCode.SUCCESS%>){
+                alert("验证码已发送");
+            }else if(result.code===<%=ResponseCode.DUPLICATE_MAIL%>){
+                writeMailMessage("邮箱已被注册");
+
+            }
+
+            else{
+                alert("系统错误,请稍后再试");
+            }
+        }
+    })
+
+}
 
 </script>

@@ -1,14 +1,20 @@
 package club.uglyland.service;
 
+import club.uglyland.application.CommonProperties;
 import club.uglyland.dao.UserDao;
 import club.uglyland.application.ResponseCode;
-import club.uglyland.util.MD5Util;
+import club.uglyland.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @Author : ZGQ
@@ -24,16 +30,33 @@ public class UserAccountService {
     @Autowired
     protected HttpSession session;
 
-    public Map<String,Object> register(String username, String password){
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("standards/util.xml");
+
+    public Map<String,Object> register(String username, String password,String mail,String verifyCode){
+
+        Jedis jedis=new Jedis(CommonProperties.serverHost);
+        String storedCode = jedis.get(mail);
+        if(storedCode==null||!storedCode.equals(verifyCode)){
+            Map<String,Object>result = new HashMap<>();
+            result.put("code",ResponseCode.WRONG_VERIFY_CODE);
+            return result;
+        }
         password = MD5Util.MD5(password);
         int code=ResponseCode.SUCCESS;
         try {
-            userDao.insertUser(username,password);
+            userDao.insertUser(username,password,mail);
         }
         catch (Exception e){
             if(e.getCause().getMessage().startsWith("Duplicate entry")){
-                code = ResponseCode.DUPLICATE_NAME;
-                System.err.println("用户名重复");
+                if(userDao.checkUsername(username)!=0) {
+                    code = ResponseCode.DUPLICATE_NAME;
+                    System.err.println("用户名重复");
+                }else if(userDao.checkMail(mail)!=0){
+                    code = ResponseCode.DUPLICATE_MAIL;
+                    System.err.println("邮箱重复");
+                }else{
+                    code=ResponseCode.FAILED;
+                }
             }else{
                 code=ResponseCode.FAILED;
                 e.printStackTrace();
@@ -69,5 +92,36 @@ public class UserAccountService {
     public void logout(){
         session.setAttribute("userId",-10086);
         session.setAttribute("username",null);
+    }
+
+    public Map<String,Object> getVerifyCode(String mail, HttpServletRequest request){
+        if(userDao.checkMail(mail)>0){
+            Map<String,Object>map=  new HashMap<>();
+            map.put("code",ResponseCode.DUPLICATE_MAIL);
+            return map;
+        }
+        Jedis jedis = new Jedis(CommonProperties.serverHost);
+        HashMap<String,Object> map = new HashMap<>();
+        String ip = HttpUtil.getIp(request);
+        Long ttl = jedis.ttl(ip);
+        if(ttl>0){
+            map.put("code",ResponseCode.REQUEST_LIMITED);
+            return map;
+        }else{
+            jedis.set(ip,"1");
+            jedis.expire(ip,60);
+        }
+        String verifyCode= VerifyCodeUtil.getVerifyCode();
+        jedis.set(mail,verifyCode);
+        jedis.expire(mail,60*5);
+        try {
+            MailThread mailThread = new MailThread(mail,verifyCode);
+            context.getBean(ThreadPoolExecutor.class).execute(mailThread);
+        } catch (Exception e) {
+            System.out.println("发送失败");
+            map.put("code",ResponseCode.FAILED);
+        }
+        map.put("code",0);
+        return map;
     }
 }

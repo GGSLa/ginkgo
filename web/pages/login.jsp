@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>登录</title>
     <script src="../js/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/init.css">
     <link rel="shortcut icon" href="../img/ico/favicon.ico"/>
     <link rel="stylesheet" href="../css/title.css">
@@ -41,7 +41,7 @@
     </div>
 
     <div class="inDiv">
-        <input type="button" class="submitRegister1" id="submitButton" value ="登录" onclick="submitRegister()">
+        <input type="button" class="submitRegister1" style="margin-left: 200px" id="submitButton" value ="登录" onclick="submitRegister()">
         <text class="tips"></text>
     </div>
 </div>
