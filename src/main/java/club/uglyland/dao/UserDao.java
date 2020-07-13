@@ -1,5 +1,6 @@
 package club.uglyland.dao;
 
+import club.uglyland.pojo.UserLoginDO;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 public interface UserDao {
     void insertUser(String handle,String password,String mail);
+    void insertUserDO(UserLoginDO userLoginDO);
     int getIdByPassword(String handle,String password);
     String getUsernameById(Integer id);
     int checkUsername(String username);

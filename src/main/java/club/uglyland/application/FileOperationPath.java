@@ -9,9 +9,11 @@ import java.util.Properties;
  */
 public class FileOperationPath {
     //文件读取的路径
-    public static final String path;
+    public static final String logPath;
+    public static final String panFilePath;
+    private static final String path;
     private static final String linuxPath = "/usr/ginkgo/";
-    private static final String windowsPath = "D:\\Java\\client_workspace\\";
+    private static final String windowsPath = "D:\\Java\\server_source\\";
 
     public static final char splitor;
 
@@ -19,12 +21,14 @@ public class FileOperationPath {
         Properties props = System.getProperties();
         String osName =  props.getProperty("os.name");
         if(osName.startsWith("Windows")){
-            path=windowsPath;
+            path =windowsPath;
             splitor='\\';
         }else{
-            path=linuxPath;
+            path =linuxPath;
             splitor='/';
         }
+        logPath = path;
+        panFilePath = path+"files"+splitor;
     }
 
     private FileOperationPath(){

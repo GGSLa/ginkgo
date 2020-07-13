@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.uglyland.dao.FileNodeDAO">
+    <select id="getFileNodeById" resultType="club.uglyland.pojo.FileNodeDO">
+        select * from ginkgo.file_node where file_node.node_id = #{param1}
+    </select>
+    <delete id="deleteByNodeId" >
+        delete from ginkgo.file_node where file_node.node_id = #{param1}
+    </delete>
+    <insert id="insert" parameterType="club.uglyland.pojo.FileNodeDO" useGeneratedKeys="true" keyProperty="nodeName">
+        insert into ginkgo.file_node (file_node.node_id, file_node.user_id, file_node.size, file_node.shared)
+        values (#{nodeId},#{userId},#{size},#{shared})
+    </insert>
+</mapper>

@@ -4,12 +4,10 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -30,7 +28,7 @@ public class LoginLog {
             filename+="_loginSuccess.txt";
             FileOutputStream fos=null;
             try {
-                String filepath = FileOperationPath.path+filename;
+                String filepath = FileOperationPath.logPath +filename;
                 fos = new FileOutputStream(filepath,true);
                 LocalTime localTime=LocalTime.now();
                 String message=(String)joinPoint.getArgs()[0]+" "+localTime+"\n";

@@ -1,5 +1,7 @@
 package club.uglyland.util;
 
+import club.uglyland.application.FileOperationPath;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -27,9 +29,9 @@ public class MailUtil {
     static {
         Properties fileProperties = new Properties();
          // 使用ClassLoader加载properties配置文件生成对应的输入流
-        InputStream in=null;
+        InputStream in;
         try {
-            in =  MailUtil.class.getClassLoader().getResourceAsStream("property\\datasource.properties");
+            in = MD5Util.class.getClassLoader().getResourceAsStream("property"+ FileOperationPath.splitor +"datasource.properties");
             fileProperties.load(in);
         } catch (FileNotFoundException e) {
             System.err.println("配置文件未找到");

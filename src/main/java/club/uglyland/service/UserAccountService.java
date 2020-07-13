@@ -1,8 +1,10 @@
 package club.uglyland.service;
 
 import club.uglyland.application.CommonProperties;
+import club.uglyland.dao.PanAuthorityDAO;
 import club.uglyland.dao.UserDao;
 import club.uglyland.application.ResponseCode;
+import club.uglyland.pojo.UserLoginDO;
 import club.uglyland.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -25,10 +27,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class UserAccountService {
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
 
     @Autowired
     protected HttpSession session;
+
+    @Autowired
+    private PanAuthorityDAO panAuthorityDAO;
 
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("standards/util.xml");
 
@@ -44,7 +49,12 @@ public class UserAccountService {
         password = MD5Util.MD5(password);
         int code=ResponseCode.SUCCESS;
         try {
-            userDao.insertUser(username,password,mail);
+            UserLoginDO loginDO = new UserLoginDO();
+            loginDO.setHandle(username);
+            loginDO.setMail(mail);
+            loginDO.setPassword(password);
+            userDao.insertUserDO(loginDO);
+            panAuthorityDAO.insert(loginDO.getId());
         }
         catch (Exception e){
             if(e.getCause().getMessage().startsWith("Duplicate entry")){

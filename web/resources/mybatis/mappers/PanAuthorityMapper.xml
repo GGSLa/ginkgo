@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.uglyland.dao.PanAuthorityDAO">
+    <select id="getPanAuthorityByUserId" resultType="club.uglyland.pojo.PanAuthorityDO">
+        select * from pan_authority where pan_authority.user_id=#{param1}
+    </select>
+    <update id="addUsed" >
+        update ginkgo.pan_authority set pan_authority.used = pan_authority.used+#{param2}
+        where pan_authority.user_id = #{param1}
+    </update>
+    <insert id="insert">
+        insert into ginkgo.pan_authority values (#{param1},52428800,0);
+    </insert>
+</mapper>

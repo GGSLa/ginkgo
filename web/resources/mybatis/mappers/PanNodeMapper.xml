@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.uglyland.dao.PanNodeDAO">
+    <select id="getPanListByParentId" resultType="club.uglyland.pojo.PanNodeDO">
+        select * from ginkgo.pan_node where pan_node.parent_id = #{param2} and pan_node.user_id = #{param1}
+    </select>
+    <select id="getPanNodeByNodeId" resultType="club.uglyland.pojo.PanNodeDO">
+        select * from ginkgo.pan_node where pan_node.node_id=#{param1}
+    </select>
+    <select id="isEmptyParentId" resultType="Integer">
+        select count(*) from ginkgo.pan_node where pan_node.parent_id = #{param1} limit 1
+    </select>
+    <delete id="deleteByNodeId" >
+        delete from ginkgo.pan_node where pan_node.node_id = #{param1}
+    </delete>
+    <insert id="insert">
+        insert into ginkgo.pan_node (pan_node.user_id, pan_node.parent_id, pan_node.type, pan_node.title, pan_node.createTime)
+        values (#{param1},#{param2},#{param3},#{param4},#{param5})
+    </insert>
+    <insert id="insertDO" parameterType="club.uglyland.pojo.PanNodeDO" useGeneratedKeys="true" keyProperty="nodeId">
+        insert into ginkgo.pan_node (pan_node.user_id, pan_node.parent_id, pan_node.type, pan_node.title, pan_node.createTime)
+        values (#{userId},#{parentId},#{type},#{title},#{createTime})
+    </insert>
+
+</mapper>

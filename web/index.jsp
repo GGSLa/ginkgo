@@ -118,7 +118,7 @@
       <a href="numberhd.html" class="chos"><img src="img/numberhd.jpg" alt=""></a>
     </div>
     <div class="choose">
-      <a href="404.html" class="chos"><img src="img/waiting.JPG" alt=""></a>
+      <a href="pages/pan.jsp" class="chos"><img src="img/panCloud.jpg" alt=""></a>
     </div>
     <div class="choose">
       <a href="404.html" class="chos"><img src="img/waiting.JPG" alt=""></a>
