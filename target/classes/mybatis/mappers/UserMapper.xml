@@ -8,6 +8,11 @@
         insert into user_login (handle,password,mail) values (#{param1},#{param2},#{param3})
     </insert>
 
+    <insert id="insertUserDO" useGeneratedKeys="true" parameterType="club.uglyland.pojo.UserLoginDO" keyProperty="id">
+        insert into user_login (handle,password,mail) values (#{handle},#{password},#{mail})
+    </insert>
+
+
     <select id="getIdByPassword" resultType="Integer">
         select id from user_login where handle=#{param1} and password=#{param2}
     </select>

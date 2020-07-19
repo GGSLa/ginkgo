@@ -17,6 +17,7 @@
     font-weight: bolder;
     text-align: center;
     color: white;
+    cursor: pointer;
 }
 
 .pan-border{
@@ -69,7 +70,7 @@
 .pan-profile-border {
     width: auto;
     height: 30px;
-    background-color: #66CCFF;
+    /*background-color: #66CCFF;*/
 }
 
 .pan-profile-limit {
@@ -99,4 +100,8 @@
 
 #upload-button{
 
+}
+
+.shared{
+    color: forestgreen;
 }

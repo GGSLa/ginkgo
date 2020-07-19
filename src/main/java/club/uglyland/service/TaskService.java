@@ -71,7 +71,7 @@ public class TaskService {
         if (code == 0) {
             if (nextTime == 1) {
                 for (Task task : list) {
-                    task.setrValue(-1);
+                    task.setRValue(-1);
                 }
             }
             map.put("list", list);
@@ -85,10 +85,10 @@ public class TaskService {
         int rvalue4 = localDate.getMonthValue();
         int rvalue5 = localDate.getDayOfMonth() + localDate.getMonthValue() * 100;
         int rvalue1 = localDate.getYear() * 10000 + localDate.getDayOfMonth() + localDate.getMonthValue() * 100;
-        task.setrValue3(rvalue3);
-        task.setrValue4(rvalue4);
-        task.setrValue5(rvalue5);
-        task.setrValue1(rvalue1);
+        task.setRValue3(rvalue3);
+        task.setRValue4(rvalue4);
+        task.setRValue5(rvalue5);
+        task.setRValue1(rvalue1);
     }
 
     public int addTask(String desc, Date time, int repeat) {
@@ -118,7 +118,7 @@ public class TaskService {
         task.setDesc(desc);
         task.setTime(time);
         task.setRepeat(repeat);
-        task.setrValue(rValue);
+        task.setRValue(rValue);
         task.setLastCompleted(new Date(0));
         try {
             taskDao.addTask(task);

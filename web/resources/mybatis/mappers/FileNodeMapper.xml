@@ -14,4 +14,12 @@
         insert into ginkgo.file_node (file_node.node_id, file_node.user_id, file_node.size, file_node.shared)
         values (#{nodeId},#{userId},#{size},#{shared})
     </insert>
+    <update id="changeShared">
+        update ginkgo.file_node set file_node.shared = #{param3}
+        where file_node.user_id = #{param2} and file_node.node_id = #{param1}
+    </update>
+
+    <select id="getSharedFile" resultType="club.uglyland.pojo.FileNodeDO">
+        select * from ginkgo.file_node where file_node.shared = true
+    </select>
 </mapper>

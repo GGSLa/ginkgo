@@ -5,12 +5,9 @@ import club.uglyland.application.ResponseCode;
 import club.uglyland.dao.FileNodeDAO;
 import club.uglyland.dao.PanAuthorityDAO;
 import club.uglyland.dao.PanNodeDAO;
-import club.uglyland.pojo.FileNodeDO;
-import club.uglyland.pojo.PanAuthorityDO;
-import club.uglyland.pojo.PanNodeDO;
-import club.uglyland.pojo.PanVO;
+import club.uglyland.dao.UserDao;
+import club.uglyland.pojo.*;
 import club.uglyland.util.SortUtil;
-import com.sun.org.apache.regexp.internal.RE;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -47,13 +44,15 @@ public class PanService {
     @Autowired
     PanAuthorityDAO panAuthorityDAO;
 
+    @Autowired
+    UserDao userDao;
+
     public Map<String, Object> getPanList(Integer userId, Integer parentNodeId, Integer sortType) {
         List<PanVO> fileList = new LinkedList<>();
         List<PanVO> folderList = new LinkedList<>();
 
-        List<PanNodeDO> list = panNodeDAO.getPanListByParentId(userId, parentNodeId);
-
-        for (PanNodeDO panNodeDO : list) {
+        List<PanNodeDO> panNodes = panNodeDAO.getPanListByParentId(userId, parentNodeId);
+        for (PanNodeDO panNodeDO : panNodes) {
             PanVO panVO = new PanVO();
             Integer nodeId = panNodeDO.getNodeId();
 
@@ -66,6 +65,7 @@ public class PanService {
                 panVO.setNodeId(nodeId.toString());
                 panVO.setUploadTime(formatDateTime(panNodeDO.getCreateTime()));
                 panVO.setTime(panNodeDO.getCreateTime());
+                panVO.setShared(fileNodeDO.getShared());
                 fileList.add(panVO);
             }else{
                 panVO.setFileSizeB(-1L);
@@ -74,7 +74,7 @@ public class PanService {
                 panVO.setName(panNodeDO.getTitle());
                 panVO.setNodeId(nodeId.toString());
                 panVO.setTime(panNodeDO.getCreateTime());
-
+                panVO.setShared(false);
                 folderList.add(panVO);
             }
         }
@@ -91,6 +91,34 @@ public class PanService {
             map.put("result",folderList);
         }
         return map;
+    }
+
+
+    public List<PanVO> getPanShareList(Integer sortType) {
+        List<PanVO> fileList = new LinkedList<>();
+
+        List<FileNodeDO> fileNodeDOs = fileNodeDAO.getSharedFile();
+        for (FileNodeDO fileNodeDO : fileNodeDOs) {
+            PanVO panVO = new PanVO();
+            Integer nodeId = fileNodeDO.getNodeId();
+            PanNodeDO panNodeDO = panNodeDAO.getPanNodeByNodeId(nodeId);
+            Integer userId = panNodeDO.getUserId();
+            String username = userDao.getUsernameById(userId);
+            panVO.setShared(true);
+            panVO.setFileSizeB(fileNodeDO.getSize());
+            panVO.setFileSize(formatSize(fileNodeDO.getSize()));
+            panVO.setUploadTime(formatDateTime(panNodeDO.getCreateTime()));
+            panVO.setTime(panNodeDO.getCreateTime());
+            panVO.setName(panNodeDO.getTitle());
+            panVO.setNodeId(nodeId.toString());
+            panVO.setUsername(username);
+
+            fileList.add(panVO);
+        }
+
+        fileList.sort(SortUtil.getPanComparator(sortType));
+
+        return fileList;
     }
 
     private String formatDateTime(Date createTime) {
@@ -251,9 +279,6 @@ public class PanService {
 
     public Integer upload(MultipartFile file, Integer userId, Integer parentId){
 
-        System.out.println("userId = " + userId);
-        System.out.println("parentId = " + parentId);
-
         Long size = file.getSize();
         System.out.println("size = " + size);
         if(size> (long) 1024 * 1024 * 500){
@@ -320,4 +345,16 @@ public class PanService {
         result.put("remain",remain);
         return result;
     }
+
+
+    public boolean share(Integer userId,Integer nodeId,boolean is){
+        try{
+            fileNodeDAO.changeShared(nodeId,userId,is);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
 }
