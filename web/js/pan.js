@@ -113,7 +113,8 @@ function makePanFormFirst() {
 
 function makePanForm(i,item) {
     var tr = $("<tr></tr>");
-    tr.append(makeTH(i+1));
+    var originName = "\""+item.name+"\"";
+    tr.append(makeTH(i+1).append("<img src='../img/ico/edit.png' width='15px' height='15px' style='cursor: pointer' onclick='updateName("+item.nodeId+','+originName+")'/>"));
 
     var fileNameTH = makeTH(item.name);
     if(item.fileSize!=="--"&&item.shared){
@@ -327,4 +328,26 @@ function goShared() {
 
 function goUnShared(){
     location.href="../pages/pan.jsp";
+}
+
+function updateName(nodeId,name){
+    var newName = prompt("请输入新的名称",name);
+    if(newName==null){
+        return;
+    }
+    $.ajax({
+        url:path1+"/update",
+        type:"POST",
+        async:false,
+        data:"newName="+newName+"&nodeId="+nodeId,
+        success:function (result) {
+            if(result!==0){
+                alert("修改失败");
+            }
+        },
+        error:function () {
+            alert("服务器异常");
+        }
+    });
+    getPanList(userId1,nodeId1,path1);
 }

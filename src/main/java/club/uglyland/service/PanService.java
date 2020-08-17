@@ -357,4 +357,16 @@ public class PanService {
     }
 
 
+    public boolean access(Integer userId,Integer nodeId) {
+        return panNodeDAO.checkAccess(userId,nodeId)>0;
+    }
+
+    public boolean updatePanNodeName(Integer nodeId,String newName) {
+        try{
+            panNodeDAO.updateTitle(nodeId,newName);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

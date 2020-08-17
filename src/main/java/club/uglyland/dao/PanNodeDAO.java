@@ -18,4 +18,6 @@ public interface PanNodeDAO {
     void deleteByNodeId(Integer nodeId);
     void insert(Integer userId, Integer parentId, Boolean isFile, String Title, Date date);
     void insertDO(PanNodeDO panNodeDO);
+    Integer checkAccess(Integer userId,Integer nodeId);
+    void updateTitle(Integer nodeId,String newName);
 }

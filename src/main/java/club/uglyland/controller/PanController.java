@@ -136,4 +136,18 @@ public class PanController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping("/update")
+    public Integer update(HttpSession session,Integer nodeId,String newName) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (!panService.access(userId,nodeId)){
+            return ResponseCode.PERMISSION_DENIED;
+        }
+        if(panService.updatePanNodeName(nodeId,newName)){
+            return ResponseCode.SUCCESS;
+        }else{
+            return ResponseCode.FAILED;
+        }
+
+    }
 }

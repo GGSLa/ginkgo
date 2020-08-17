@@ -47,7 +47,7 @@
                 <th style="width:600px;cursor:pointer" onclick="onNameClick()" id="fileNameHead">名称▲</th>
                 <th style="width:200px;cursor:pointer" onclick="onUploadTimeClick()" id="uploadTimeHead">上传时间</th>
                 <th style="width:120px;cursor:pointer" onclick="onFileSizeClick()" id="fileSizeHead">文件大小</th>
-                <th style="width:120px" onclick="onOwnerClick()" id="fileOwner">上传者</th>
+                <th style="width:120px;cursor:pointer" onclick="onOwnerClick()" id="fileOwner">上传者</th>
                 <th style="width:60px">下载</th>
             </tr>
             <tr class="bg1">

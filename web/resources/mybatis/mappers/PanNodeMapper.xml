@@ -24,5 +24,11 @@
         insert into ginkgo.pan_node (pan_node.user_id, pan_node.parent_id, pan_node.type, pan_node.title, pan_node.createTime)
         values (#{userId},#{parentId},#{type},#{title},#{createTime})
     </insert>
+    <select id="checkAccess" resultType="Integer">
+        select count(*) from ginkgo.pan_node where pan_node.user_id=#{param1} and pan_node.node_id=#{param2} limit 1
+    </select>
+    <update id="updateTitle">
+        update ginkgo.pan_node set pan_node.title = #{param2} where pan_node.node_id= #{param1}
+    </update>
 
 </mapper>
